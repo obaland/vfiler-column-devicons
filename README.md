@@ -1,2 +1,3 @@
-# vfiler-column-devicons
+# *In preparation*
+
 The devicons column extension plugin for vfiler.vim.
