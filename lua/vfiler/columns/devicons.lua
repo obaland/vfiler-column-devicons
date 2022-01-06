@@ -5,9 +5,9 @@ local vim = require('vfiler/vim')
 local fnamemodify = vim.fn.fnamemodify
 local strwidth = vim.fn.strwidth
 
-local DeviconColumn = {}
+local DeviconsColumn = {}
 
-DeviconColumn.configs = {
+DeviconsColumn.configs = {
   selected = {
     icon = '',
     link = 'vfilerSelected',
@@ -1246,7 +1246,7 @@ local function get_icon_width(configs)
   return width
 end
 
-local icon_width = get_icon_width(DeviconColumn.configs)
+local icon_width = get_icon_width(DeviconsColumn.configs)
 
 local function get_syntax(key, icon)
   local syntax = {
@@ -1266,7 +1266,7 @@ local function get_syntax(key, icon)
 end
 
 local function get_file_key(name)
-  local files = DeviconColumn.configs.files
+  local files = DeviconsColumn.configs.files
   if files[name] then
     return name
   end
@@ -1278,22 +1278,22 @@ local function get_file_key(name)
   return 'default'
 end
 
-function DeviconColumn.setup(configs)
+function DeviconsColumn.setup(configs)
   configs = configs or {}
-  core.table.merge(DeviconColumn.configs, configs)
-  icon_width = get_icon_width(DeviconColumn.configs)
+  core.table.merge(DeviconsColumn.configs, configs)
+  icon_width = get_icon_width(DeviconsColumn.configs)
 end
 
-function DeviconColumn.new()
+function DeviconsColumn.new()
   local Column = require('vfiler/columns/column')
-  local self = core.inherit(DeviconColumn, Column, 'devicons')
+  local self = core.inherit(DeviconsColumn, Column)
 
   -- syntax and highlight
   local syntaxes = {}
   for _, key in ipairs({ 'default', 'selected', 'opened', 'closed' }) do
-    syntaxes[key] = get_syntax(key, DeviconColumn.configs[key])
+    syntaxes[key] = get_syntax(key, DeviconsColumn.configs[key])
   end
-  for key, icon in pairs(DeviconColumn.configs.files) do
+  for key, icon in pairs(DeviconsColumn.configs.files) do
     syntaxes[key] = get_syntax(key, icon)
   end
 
@@ -1306,28 +1306,28 @@ function DeviconColumn.new()
   return self
 end
 
-function DeviconColumn:get_text(item, width)
+function DeviconsColumn:get_text(item, width)
   local key, icon
   if item.selected then
     key = 'selected'
-    icon = DeviconColumn.configs[key].icon
+    icon = DeviconsColumn.configs[key].icon
   elseif item.isdirectory then
     key = item.opened and 'opened' or 'closed'
-    icon = DeviconColumn.configs[key].icon
+    icon = DeviconsColumn.configs[key].icon
   else
     key = get_file_key(item.name)
     if key == 'default' then
-      icon = DeviconColumn.configs.default.icon
+      icon = DeviconsColumn.configs.default.icon
     else
-      icon = DeviconColumn.configs.files[key].icon
+      icon = DeviconsColumn.configs.files[key].icon
     end
   end
   icon = icon .. (' '):rep(icon_width - strwidth(icon))
   return self._syntax:surround_text(key, icon)
 end
 
-function DeviconColumn:get_width(items, width)
+function DeviconsColumn:get_width(items, width)
   return icon_width
 end
 
-return DeviconColumn
+return DeviconsColumn

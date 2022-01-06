@@ -12,13 +12,7 @@ A [Nerd Font compatible font](https://github.com/ryanoasis/nerd-fonts#font-insta
 Plug 'obaland/vfiler.vim'
 Plug 'obaland/vfiler-column-devicons'
 ```
-2. After installation, create and register a column on the lua script.
-```lua
-require'vfiler/column'.register(
-  require'vfiler/columns/devicons'.new()
-)
-```
-3. Since the column was registered with the name '**devicons**', specify the column at the desired position in the vfiler settings.
+2. Set '**devicons**' to any position for the column settings.
 ```lua
 require'vfiler/config'.setup {
   options = {
@@ -30,11 +24,6 @@ require'vfiler/config'.setup {
 
 ## Configuration Examples
 ```lua
--- Register devicons column
-require'vfiler/column'.register(
-  require'vfiler/columns/devicons'.new()
-)
-
 -- vfiler configuration (Explorer style)
 require'vfiler/config'.setup {
   options = {
