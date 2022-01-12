@@ -1249,8 +1249,9 @@ end
 local icon_width = get_icon_width(DeviconsColumn.configs)
 
 local function get_syntax(key, icon)
+  local name = 'vfilerDevicons_' .. icon.name
   local syntax = {
-    group = 'vfilerDevicons_' .. icon.name,
+    group = name,
     start_mark = 'D@' .. key .. '\\',
   }
   -- highlight
@@ -1258,7 +1259,7 @@ local function get_syntax(key, icon)
     syntax.highlight = icon.link
   else
     syntax.highlight = {
-      name = 'vfilerDeviconsColor_' .. icon.name,
+      name = name,
       args = {
         guifg = icon.color,
         ctermfg = icon.cterm_color,
