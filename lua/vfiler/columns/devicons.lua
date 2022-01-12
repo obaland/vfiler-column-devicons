@@ -1258,8 +1258,11 @@ local function get_syntax(key, icon)
     syntax.highlight = icon.link
   else
     syntax.highlight = {
-      guifg = icon.color,
-      ctermfg = icon.cterm_color,
+      name = 'vfilerDeviconsColor_' .. icon.name,
+      args = {
+        guifg = icon.color,
+        ctermfg = icon.cterm_color,
+      },
     }
   end
   return syntax
