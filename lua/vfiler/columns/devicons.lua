@@ -1259,11 +1259,8 @@ local function get_syntax(key, icon)
     syntax.highlight = icon.link
   else
     syntax.highlight = {
-      name = name,
-      args = {
-        guifg = icon.color,
-        ctermfg = icon.cterm_color,
-      },
+      guifg = icon.color,
+      ctermfg = icon.cterm_color,
     }
   end
   return syntax
@@ -1305,7 +1302,6 @@ function DeviconsColumn.new()
   self._syntax = Syntax.new({
     syntaxes = syntaxes,
     end_mark = '\\D@',
-    ignore_group = 'vfilerDevicons_Ignore',
   })
   return self
 end
