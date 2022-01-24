@@ -1248,11 +1248,15 @@ end
 
 local icon_width = get_icon_width(DeviconsColumn.configs)
 
-local function get_syntax(key, icon)
+local function get_syntax(parent, key, icon)
   local name = 'vfilerDevicons_' .. icon.name
   local syntax = {
     group = name,
-    start_mark = 'D@' .. key .. '\\',
+    keyword = icon.icon,
+    options = {
+      contained = true,
+      containedin = parent,
+    },
   }
   -- highlight
   if icon.link then
@@ -1290,12 +1294,18 @@ function DeviconsColumn.new()
   local self = core.inherit(DeviconsColumn, Column)
 
   -- syntax and highlight
-  local syntaxes = {}
+  local group = 'vfilerDevicons'
+  local syntaxes = {
+    devicons = {
+      group = group,
+      start_mark = 'D@i\\',
+    },
+  }
   for _, key in ipairs({ 'default', 'selected', 'opened', 'closed' }) do
-    syntaxes[key] = get_syntax(key, DeviconsColumn.configs[key])
+    syntaxes[key] = get_syntax(group, key, DeviconsColumn.configs[key])
   end
   for key, icon in pairs(DeviconsColumn.configs.files) do
-    syntaxes[key] = get_syntax(key, icon)
+    syntaxes[key] = get_syntax(group, key, icon)
   end
 
   local Syntax = require('vfiler/columns/syntax')
@@ -1323,7 +1333,7 @@ function DeviconsColumn:get_text(item, width)
     end
   end
   icon = icon .. (' '):rep(icon_width - strwidth(icon))
-  return self._syntax:surround_text(key, icon)
+  return self._syntax:surround_text('devicons', icon)
 end
 
 function DeviconsColumn:get_width(items, width)
