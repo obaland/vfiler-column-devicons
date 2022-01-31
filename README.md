@@ -12,7 +12,7 @@ A [Nerd Font compatible font](https://github.com/ryanoasis/nerd-fonts#font-insta
 Plug 'obaland/vfiler.vim'
 Plug 'obaland/vfiler-column-devicons'
 ```
-2. Set '**devicons**' to any position for the column settings.
+2. Set `devicons` to any position for the column settings.
 ```lua
 require'vfiler/config'.setup {
   options = {
