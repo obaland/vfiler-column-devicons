@@ -1321,7 +1321,7 @@ function DeviconsColumn:_get_text(item, width)
   if item.selected then
     key = 'selected'
     icon = DeviconsColumn.configs[key].icon
-  elseif item.isdirectory then
+  elseif item.is_directory then
     key = item.opened and 'opened' or 'closed'
     icon = DeviconsColumn.configs[key].icon
   else
