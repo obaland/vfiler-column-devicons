@@ -71,10 +71,16 @@ DeviconsColumn.configs = {
       name = 'Ppt',
     },
     ['xml'] = {
-      icon = '謹',
+      icon = '',
       color = '#e37933',
       cterm_color = '173',
       name = 'Xml',
+    },
+    ['xaml'] = {
+      icon = '',
+      color = '#e37933',
+      cterm_color = '173',
+      name = 'Xaml',
     },
     ['webpack'] = {
       icon = 'ﰩ',
@@ -1232,6 +1238,48 @@ DeviconsColumn.configs = {
       cterm_color = '108',
       name = 'Mint',
     },
+    ['a'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'StaticLinkLibrary',
+    },
+    ['dll'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'Dll',
+    },
+    ['exe'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'Exe',
+    },
+    ['lib'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'Lib',
+    },
+    ['o'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'Object',
+    },
+    ['so'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'DynamicLinkLibrary',
+    },
+    ['pdb'] = {
+      icon = '',
+      color = '#6d8086',
+      cterm_color = '66',
+      name = 'Pdb',
+    },
   },
 }
 
@@ -1271,6 +1319,7 @@ local function get_syntax(parent, key, icon)
 end
 
 local function get_file_key(name)
+  name = name:lower()
   local files = DeviconsColumn.configs.files
   if files[name] then
     return name
@@ -1321,7 +1370,7 @@ function DeviconsColumn:_get_text(item, width)
   if item.selected then
     key = 'selected'
     icon = DeviconsColumn.configs[key].icon
-  elseif item.is_directory then
+  elseif item.type == 'directory' then
     key = item.opened and 'opened' or 'closed'
     icon = DeviconsColumn.configs[key].icon
   else
