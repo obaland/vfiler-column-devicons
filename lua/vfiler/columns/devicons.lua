@@ -1296,16 +1296,13 @@ end
 
 local icon_width = get_icon_width(DeviconsColumn.configs)
 
-local function get_syntax(parent, key, icon)
+local function get_syntax(icon)
   local name = 'vfilerDevicons_' .. icon.name
   local syntax = {
     group = name,
-    keyword = icon.icon,
-    options = {
-      contained = true,
-      containedin = parent,
-    },
+    start_mark = ('D@%s\\'):format(icon.name),
   }
+
   -- highlight
   if icon.link then
     syntax.highlight = icon.link
@@ -1340,18 +1337,12 @@ end
 
 function DeviconsColumn.new()
   -- syntax and highlight
-  local group = 'vfilerDevicons'
-  local syntaxes = {
-    devicons = {
-      group = group,
-      start_mark = 'D@i\\',
-    },
-  }
+  local syntaxes = {}
   for _, key in ipairs({ 'default', 'selected', 'opened', 'closed' }) do
-    syntaxes[key] = get_syntax(group, key, DeviconsColumn.configs[key])
+    syntaxes[key] = get_syntax(DeviconsColumn.configs[key])
   end
   for key, icon in pairs(DeviconsColumn.configs.files) do
-    syntaxes[key] = get_syntax(group, key, icon)
+    syntaxes[key] = get_syntax(icon)
   end
 
   local Column = require('vfiler/columns/column')
@@ -1366,15 +1357,14 @@ function DeviconsColumn:get_width(items, width)
 end
 
 function DeviconsColumn:_get_text(item, width)
-  local key, icon
+  local icon
   if item.selected then
-    key = 'selected'
-    icon = DeviconsColumn.configs[key].icon
+    icon = DeviconsColumn.configs['selected'].icon
   elseif item.type == 'directory' then
-    key = item.opened and 'opened' or 'closed'
+    local key = item.opened and 'opened' or 'closed'
     icon = DeviconsColumn.configs[key].icon
   else
-    key = get_file_key(item.name)
+    local key = get_file_key(item.name)
     if key == 'default' then
       icon = DeviconsColumn.configs.default.icon
     else
@@ -1385,7 +1375,15 @@ function DeviconsColumn:_get_text(item, width)
 end
 
 function DeviconsColumn:_get_syntax_name(item, width)
-  return 'devicons'
+  local key
+  if item.selected then
+    key = 'selected'
+  elseif item.type == 'directory' then
+    key = item.opened and 'opened' or 'closed'
+  else
+    key = get_file_key(item.name)
+  end
+  return key
 end
 
 return DeviconsColumn
