@@ -58,17 +58,41 @@ DeviconsColumn.configs = {
       cterm_color = '23',
       name = 'Xls',
     },
+    ['xlsm'] = {
+      icon = '',
+      color = '#207245',
+      cterm_color = '23',
+      name = 'Xlsm',
+    },
+    ['xlsx'] = {
+      icon = '',
+      color = '#207245',
+      cterm_color = '23',
+      name = 'Xlsx',
+    },
     ['doc'] = {
       icon = '',
       color = '#185abd',
       cterm_color = '25',
       name = 'Doc',
     },
+    ['docx'] = {
+      icon = '',
+      color = '#185abd',
+      cterm_color = '25',
+      name = 'Docx',
+    },
     ['ppt'] = {
       icon = '',
       color = '#cb4a32',
       cterm_color = '167',
       name = 'Ppt',
+    },
+    ['pptx'] = {
+      icon = '',
+      color = '#cb4a32',
+      cterm_color = '167',
+      name = 'Pptx',
     },
     ['xml'] = {
       icon = '',
@@ -772,6 +796,18 @@ DeviconsColumn.configs = {
       cterm_color = '173',
       name = 'Mli',
     },
+    ['mp3'] = {
+      icon = '',
+      color = '#5f00af',
+      cterm_color = '55',
+      name = 'Mp3',
+    },
+    ['mp4'] = {
+      icon = '',
+      color = '#00af00',
+      cterm_color = '34',
+      name = 'Mp4',
+    },
     ['mustache'] = {
       icon = '',
       color = '#e37933',
@@ -1232,6 +1268,12 @@ DeviconsColumn.configs = {
       cterm_color = '208',
       name = 'Zig',
     },
+    ['zip'] = {
+      icon = '',
+      color = '#ff5f00',
+      cterm_color = '202',
+      name = 'Zip',
+    },
     ['mint'] = {
       icon = '',
       color = '#87c095',
@@ -1279,6 +1321,12 @@ DeviconsColumn.configs = {
       color = '#6d8086',
       cterm_color = '66',
       name = 'Pdb',
+    },
+    ['7z'] = {
+      icon = '',
+      color = '#89e051',
+      cterm_color = '113',
+      name = '7z',
     },
   },
 }
