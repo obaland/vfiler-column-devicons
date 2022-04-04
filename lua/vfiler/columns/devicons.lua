@@ -742,6 +742,12 @@ DeviconsColumn.configs = {
       cterm_color = '185',
       name = 'License',
     },
+    ['lnk'] = {
+      icon = '',
+      color = '#89e051',
+      cterm_color = '113',
+      name = 'Shortcut',
+    },
     ['lua'] = {
       icon = '',
       color = '#51a0cf',
