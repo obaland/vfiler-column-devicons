@@ -1064,7 +1064,7 @@ DeviconsColumn.configs = {
 --  end
 --end
 
-local icon_width = 1
+local ICON_WIDTH = 1
 
 local function get_syntax(name, icon)
   -- syntax
@@ -1118,21 +1118,25 @@ function DeviconsColumn.new()
   return core.inherit(DeviconsColumn, Column, syntaxes)
 end
 
-function DeviconsColumn:get_width(items, width)
-  return icon_width
+function DeviconsColumn:to_text(item, width)
+  local syntax
+  if item.selected then
+    syntax = 'Selected'
+  elseif item.type == 'directory' then
+    syntax = item.opened and 'OpenedDirectory' or 'ClosedDirectory'
+  else
+    syntax = get_file_key(item.name)
+  end
+  local i = DeviconsColumn.configs.icons[syntax]
+  return {
+    string = i.icon,
+    width = ICON_WIDTH,
+    syntax = syntax
+  }
 end
 
-function DeviconsColumn:get_text(item, width)
-  local key
-  if item.selected then
-    key = 'Selected'
-  elseif item.type == 'directory' then
-    key = item.opened and 'OpenedDirectory' or 'ClosedDirectory'
-  else
-    key = get_file_key(item.name)
-  end
-  local i = DeviconsColumn.configs.icons[key]
-  return self:surround_text(key, i.icon), icon_width
+function DeviconsColumn:get_width(items, width, winid)
+  return ICON_WIDTH
 end
 
 return DeviconsColumn
