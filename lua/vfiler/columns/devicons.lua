@@ -1131,7 +1131,7 @@ function DeviconsColumn:to_text(item, width)
   return {
     string = i.icon,
     width = ICON_WIDTH,
-    syntax = syntax
+    syntax = syntax,
   }
 end
 
