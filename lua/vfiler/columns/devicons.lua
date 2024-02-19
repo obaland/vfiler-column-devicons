@@ -1107,6 +1107,11 @@ function DeviconsColumn.setup(configs)
   core.table.merge(DeviconsColumn.configs, configs)
 end
 
+function DeviconsColumn.get_icon_color(filename)
+  local i = DeviconsColumn.configs.icons[get_file_key(filename)]
+  return i.icon, i.color
+end
+
 function DeviconsColumn.new()
   -- syntax and highlight
   local syntaxes = {}

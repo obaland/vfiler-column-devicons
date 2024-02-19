@@ -1,0 +1,11 @@
+{
+    "workspace.library": [
+        "C:\\Users\\TObara\\.config\\dein\\repos\\github.com\\folke\\neodev.nvim\\types\\stable",
+        "C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua",
+        "C:\\Users\\TObara\\.config\\dein\\repos\\github.com\\folke\\neodev.nvim\\types\\stable",
+        "C:\\tools\\neovim\\nvim-win64\\share\\nvim\\runtime\\lua",
+        "C:/Users/TObara/.config/dein/repos/github.com/obaland/vfiler-column-devicons/lua",
+        "C:/Users/TObara/.config/dein/repos/github.com/obaland/vfiler-column-devicons/lua",
+        "${3rd}/luv/library"
+    ]
+}
